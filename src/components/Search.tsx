@@ -1,12 +1,15 @@
 import {
   Box, Input, InputGroup, InputLeftAddon, InputRightAddon, Button,
 } from '@chakra-ui/react';
-
-const handleClick = () => {
-  console.log('click');
-};
+import { useState } from 'react';
+import api from '../services/api';
 
 export function Search() {
+  const [isDisabled, setIsDisabled] = useState(false);
+  const handleClick = () => {
+    api.list('Maria');
+    setIsDisabled(true);
+  };
   return (
     <Box display="flex">
       <InputGroup>
@@ -22,7 +25,7 @@ export function Search() {
         />
         {/* <InputRightAddon children="💡" /> */}
         <InputRightAddon>
-          <Button onClick={handleClick}>
+          <Button onClick={handleClick} disabled={isDisabled}>
             💡
           </Button>
         </InputRightAddon>
