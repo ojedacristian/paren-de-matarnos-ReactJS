@@ -5,6 +5,9 @@ import { useState } from 'react';
 import api from '../services/api';
 
 export function Search() {
+  console.log(import.meta.env.MODE);
+  console.log(import.meta.env.VITE_APIKEY);
+
   const [isDisabled, setIsDisabled] = useState(false);
   const handleClick = () => {
     api.list('Maria');
