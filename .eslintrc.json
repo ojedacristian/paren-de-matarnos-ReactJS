@@ -5,8 +5,6 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "airbnb",
-        "airbnb-typescript",
         "plugin:react/jsx-runtime"
     ],
     "parser": "@typescript-eslint/parser",

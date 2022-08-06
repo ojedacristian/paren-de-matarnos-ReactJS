@@ -2,20 +2,16 @@ import { Container } from '@chakra-ui/react';
 import Search from './components/Search';
 import Title from './components/Title';
 import DataSub from './components/DataSub';
+import { Link } from 'react-router-dom';
 
-export function HomeScreen() {
+const HomeScreen: React.FC = () => {
   return (
-    <Container
-      minWidth="container.md"
-      display="flex"
-      flexDirection="column"
-      justifyContent="space-around"
-    >
-      <Title />
-      <Search />
-      <DataSub />
-    </Container>
-  );
-}
+    <>  
+    <Title />
+    <Search />
+    <DataSub />
+    </>
+  )
+};
 
 export default HomeScreen;

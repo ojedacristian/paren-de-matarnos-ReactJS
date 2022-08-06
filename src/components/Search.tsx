@@ -2,17 +2,19 @@ import {
   Box, Input, InputGroup, InputLeftAddon, InputRightAddon, Button,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import api from '../services/api';
+import { useNavigate } from 'react-router-dom';
 
-export function Search() {
-  console.log(import.meta.env.MODE);
-  console.log(import.meta.env.VITE_APIKEY);
-
-  const [isDisabled, setIsDisabled] = useState(false);
+const Search: React.FC = () => {
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  const [value, setValue] = useState<string>('')
+  const navigate = useNavigate()
   const handleClick = () => {
-    api.list('Maria');
     setIsDisabled(true);
+    navigate(`/search/${value}`)    
   };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement> )=>{
+    setValue(e.target.value)
+  }
   return (
     <Box display="flex">
       <InputGroup>
@@ -25,8 +27,9 @@ export function Search() {
           _placeholder={{
             color: 'inherit',
           }}
+          value={value}
+          onChange={ (e)=> handleChange(e) }
         />
-        {/* <InputRightAddon children="💡" /> */}
         <InputRightAddon>
           <Button onClick={handleClick} disabled={isDisabled}>
             💡
@@ -35,6 +38,6 @@ export function Search() {
       </InputGroup>
     </Box>
   );
-}
+};
 
 export default Search;

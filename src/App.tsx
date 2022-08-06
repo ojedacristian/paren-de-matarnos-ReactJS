@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react';
-import { HomeScreen } from './HomeScreen';
+import AppRouter from './router/AppRouter';
 
-function App() {
+const App: React.FC = () => {
   return (
     <Box
       backgroundImage="linear-gradient(90deg, #270652 0%, #3f285e 100%)"
@@ -11,7 +11,7 @@ function App() {
       display="flex"
       justifyContent="center"
     >
-      <HomeScreen />
+      <AppRouter />
     </Box>
   );
 }
