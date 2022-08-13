@@ -9,10 +9,11 @@ const App: React.FC = () => {
       width="full"
       minHeight="100vh"
       display="flex"
+      flexDirection='column'
       justifyContent="center"
     >
       <AppRouter />
-    </Box>
+    </Box>    
   );
 }
 

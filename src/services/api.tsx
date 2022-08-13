@@ -1,15 +1,14 @@
-export const api = {
-  list: (name: string) => {
+import { GSearchRes } from "../interfaces/interfaces";
+
+export default {
+  list: (name: string): Promise<GSearchRes[]> => {
     const url = `https://www.googleapis.com/customsearch/v1?key=${import.meta.env.VITE_APIKEY}&q="${
       name
     }" hallada muerta`;
-    fetch(url)
+    return fetch(url)
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        return data;
+      .then((response) => {
+         return response.items
       });
   },
 };
-
-export default api;
