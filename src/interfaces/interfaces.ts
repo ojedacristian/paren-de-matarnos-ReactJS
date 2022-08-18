@@ -28,6 +28,7 @@ export interface Pagemap {
     newsarticle?:            Newsarticle[];
     imagegallery?:           Imagegallery[];
     listitem?:               Listitem[];
+    thumbnail?:              any;
 }
 
 export interface Article {

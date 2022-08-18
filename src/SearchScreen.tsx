@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom'
 import { useEffect } from 'react';
 import api from './services/api';
 import { GSearchRes } from './interfaces/interfaces';
-import parse from 'html-react-parser'
+import Post from './components/Post';
+import { NewspaperArticle } from './components/NewspaperArticle';
 
 export const SearchScreen:React.FC = () => {
     const { id = '' } = useParams()
@@ -19,6 +20,38 @@ export const SearchScreen:React.FC = () => {
             console.log(res)
         }) 
     }, [])
+
+    const meses:any = {
+        Ene: "Jan",
+        Feb: "Feb",
+        Mar: "Mar",
+        Abr: "Apr",
+        May: "May",
+        Jun: "Jun",
+        Jul: "Jul",
+        Ago: "Aug",
+        Sep: "Sep",
+        Oct: "Oct",
+        Nov: "Nov",
+        Dic: "Dec"
+      };
+
+    const parsearFecha = (fecha: string) => {
+        let partes = fecha.split(" ");
+        partes[1] = meses[partes[1]];
+        if (partes[1] === undefined) return " ";
+        let fechaUnida = new Date(partes.join(" "));
+        let day = fechaUnida.getDate();
+        let month = fechaUnida.getMonth() + 1;
+        let year = fechaUnida.getFullYear();
+        let fechaFormateada;
+        if (month < 10) {
+          fechaFormateada = `${day}/0${month}/${year}`;
+        } else {
+          fechaFormateada = `${day}/${month}/${year}`;
+        }
+        return fechaFormateada;
+      }
     
   
     return (
@@ -30,20 +63,21 @@ export const SearchScreen:React.FC = () => {
         <Container    
         maxWidth='container.xl'
         >
-            <SimpleGrid columns={3} spacing={2}>
+            <SimpleGrid columns={3} spacing={4} id='newspaper'>
             {
                 data.map( (item, i) => (
-                    <Box key={i}>
-                    <Image src={item.pagemap.cse_image[0].src} /> 
-                    <Text as='h2'>
-                        {
-                            parse( item.htmlTitle || item.pagemap.metatags[0]["og:title"] )
-                        }
-                    </Text>
-                    <Text>
-                        {item.link + i}
-                    </Text>
-                </Box>
+                <NewspaperArticle 
+                    key={i} 
+                    image={
+                        item.pagemap?.cse_image[0].src ||
+                        item.pagemap?.thumbnail[0].src ||
+                        item.pagemap?.cse_thumbnail[0].src
+                    }
+                    fecha={ item.htmlSnippet.split(" <b>...</b> ")[0] }
+                    description={ item.pagemap.metatags[0]['og:description'] || item.htmlSnippet.split(" <b>...</b> ")[1] }
+                    title={ item.title || item.htmlTitle || item.pagemap.metatags[0]["og:title"]  }
+                    epigraph={ item.pagemap.metatags[0]['og:site_name'] }
+                 />
               ))
             }
             </SimpleGrid>

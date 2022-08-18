@@ -16,7 +16,7 @@ const Search: React.FC = () => {
     setValue(e.target.value)
   }
   return (
-    <Box display="flex">
+    <Box width='100%'>
       <InputGroup>
         <InputLeftAddon children="#" color="purple.500" fontSize="2em" fontWeight="bold" />
         <Input

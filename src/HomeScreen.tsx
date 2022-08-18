@@ -6,6 +6,13 @@ import { Link } from 'react-router-dom';
 
 const HomeScreen: React.FC = () => {
   return (
+    <Box
+    display='flex'
+    justifyContent='center'
+    alignItems='space-between'
+    flex={1}
+    >
+
       <Container
     minWidth="container.md"
     display="flex"
@@ -17,6 +24,7 @@ const HomeScreen: React.FC = () => {
       <Search />
       <DataSub />
     </Container>
+      </Box>
   )
 };
 
