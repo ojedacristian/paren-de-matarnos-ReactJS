@@ -78,15 +78,16 @@ export const SearchScreen:React.FC = () => {
                 <NewspaperArticle 
                     key={i} 
                     image={
-                        item.pagemap?.cse_image[0].src ||
-                        item.pagemap?.thumbnail[0].src ||
-                        item.pagemap?.cse_thumbnail[0].src
+                        item.pagemap?.cse_image[0]?.src ||
+                        item.pagemap?.cse_thumbnail[0].src ||
+                        item.pagemap?.cse_thumbnail[0]?.src
                     }
                     fecha={ item.htmlSnippet.split(" <b>...</b> ")[0] }
                     description={ item.pagemap.metatags[0]['og:description'] || item.htmlSnippet.split(" <b>...</b> ")[1] }
                     link={item.link}
                     title={ item.title || item.htmlTitle || item.pagemap.metatags[0]["og:title"]  }
                     epigraph={ item.pagemap.metatags[0]['og:site_name'] }
+                    id={id}
                  />
               ))
             }
