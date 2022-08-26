@@ -1,4 +1,4 @@
-import { Box, SimpleGrid, GridItem, Image, Text, Container } from '@chakra-ui/react';
+import { Box, SimpleGrid, GridItem, Image, Text, Container, Heading } from '@chakra-ui/react';
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useEffect } from 'react';
@@ -62,8 +62,17 @@ export const SearchScreen:React.FC = () => {
 
         <Container    
         maxWidth='container.xl'
+        backgroundColor='#F9F7F1'
+        padding={0}
         >
-            <SimpleGrid columns={3} spacing={4} id='newspaper'>
+          <Heading size='3xl' color='blackAlpha.900' textAlign='center' padding='0.5em' >DIARIO POPULAR</Heading>
+          <Heading size='sm' color='blackAlpha.800' textAlign='center' padding='1em' 
+          borderTop=   '2px solid black'
+          borderBottom='2px solid black'
+          >BUENOS AIRES, ARG - { new Date().toLocaleDateString('es-AR') }</Heading>
+            <Box id='newspaper' padding='1em'
+                    sx={{ columnCount: [1, 2, 3], columnGap: "8px" }}
+            >
             {
                 data.map( (item, i) => (
                 <NewspaperArticle 
@@ -75,12 +84,13 @@ export const SearchScreen:React.FC = () => {
                     }
                     fecha={ item.htmlSnippet.split(" <b>...</b> ")[0] }
                     description={ item.pagemap.metatags[0]['og:description'] || item.htmlSnippet.split(" <b>...</b> ")[1] }
+                    link={item.link}
                     title={ item.title || item.htmlTitle || item.pagemap.metatags[0]["og:title"]  }
                     epigraph={ item.pagemap.metatags[0]['og:site_name'] }
                  />
               ))
             }
-            </SimpleGrid>
+            </Box>
         </Container>
         </Box>
   )
