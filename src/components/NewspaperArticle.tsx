@@ -14,7 +14,7 @@ interface Props {
 
 
 export const NewspaperArticle: React.FC<Props> = ({ title, image, description, fecha, epigraph, link, id}) => {
-    const regexSinId = '/hallada|muerta|asesinada|desaparecida|muerte|sin vida|violación|violada|asesinos|';
+    const regexSinId = '/hallada|muerta|asesinada|desaparecida|muerte|muere|sin vida|violación|violada|asesinos|';
     const regex = new RegExp( regexSinId + id , 'gi')
     return (
             <Box 
