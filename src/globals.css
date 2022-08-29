@@ -14,3 +14,7 @@ h1, h2, h3, h4 {
 .buttons svg {
   height: 1em;
 }
+
+.hashtags h4:nth-child(even) {
+  color: white;
+}

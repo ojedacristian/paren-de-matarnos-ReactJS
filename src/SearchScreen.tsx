@@ -97,7 +97,7 @@ export const SearchScreen:React.FC = () => {
               )
             }
               </Box>
-            </Box>
+          </Box>
             <Box display='flex' justifyContent='space-around' padding='1em'>
               <Box className='buttons' display='flex' flexDirection='column' justifyContent={'space-around'}>
                 <Button colorScheme='facebook' leftIcon={ <FacebookIcon/> } >
@@ -113,12 +113,14 @@ export const SearchScreen:React.FC = () => {
                   Whatsapp
                 </Button>              
               </Box>
-              <Box color='purple.600'>
+              <Box color='purple.600' className='hashtags'>
+                <Box>
                 <Heading as='h4'>#ParenDeMatarnos</Heading>
                 <Heading as='h4'>#NoTeQuedesCallada</Heading>
                 <Heading as='h4'>#Linea144</Heading>
                 <Heading as='h4'>{`#${id.toLocaleUpperCase()}SomosTodas`}</Heading>
                 <Heading as='h4'>#NiUnaMenos</Heading>
+                </Box>
               </Box>
             </Box>
         </Container>
